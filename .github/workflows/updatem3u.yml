@@ -1,0 +1,41 @@
+name: Sync Specific Folder
+
+on:
+  schedule:
+    - cron: '*/1440 * * * *'  # 每30分钟执行一次，你可以根据需要调整这个时间
+
+jobs:
+  sync-folder:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source with sparse-checkout
+      uses: actions/checkout@v2
+      with:
+        path: 'main_repo'
+
+    - name: Setup sparse-checkout
+      run: |
+        cd main_repo
+        git sparse-checkout init --cone
+        git sparse-checkout set tv/m3u
+
+    - name: Fetch and merge changes from upstream
+      run: |
+        cd main_repo
+        git remote add upstream https://github.com/fanmingming/live.git
+        git fetch upstream main
+        git merge upstream/main
+
+    - name: Commit and Push changes
+      run: |
+        cd main_repo
+        git add .
+        git commit -m "Sync tv/m3u folder with upstream"
+        git push origin HEAD:main
+
+    - name: Cleanup
+      if: always()
+      run: |
+        rm -rf main_repo
