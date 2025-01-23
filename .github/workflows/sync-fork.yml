@@ -13,6 +13,6 @@ jobs:
       - uses: TG908/fork-sync@v1.6 
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          owner: lllllan-fv
+          owner: fanmingming
           base: main 
           head: main
