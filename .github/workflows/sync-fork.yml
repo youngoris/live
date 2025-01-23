@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: TG908/fork-sync@v1.6 
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.REPO_SYNC_TOKEN }}
           owner: fanmingming
           base: main 
           head: main
