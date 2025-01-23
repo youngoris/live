@@ -17,8 +17,8 @@ jobs:
 
     - name: Set up Git
       run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git config --global user.name 'youngoris'
+        git config --global user.email 'andre-ho@outlook.com'
 
     - name: Add upstream repository
       run: git remote add upstream https://github.com/fanmingming/live.git  # 替换为原仓库地址
